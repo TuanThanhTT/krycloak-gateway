@@ -23,8 +23,8 @@ services:
 
   gateway:
     build:
-      context: ./KeycloakGateway
-      dockerfile: Dockerfile
+       context: .
+       dockerfile: KeycloakGateway/Dockerfile
     container_name: gateway
     ports:
       - "5000:80"
