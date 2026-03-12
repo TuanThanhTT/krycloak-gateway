@@ -2,8 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore KeycloakGateway.csproj
-RUN dotnet publish KeycloakGateway.csproj -c Release -o /app/publish
+RUN dotnet restore KeycloakGateway/KeycloakGateway.csproj
+RUN dotnet publish KeycloakGateway/KeycloakGateway.csproj -c Release -o /app/publish
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
