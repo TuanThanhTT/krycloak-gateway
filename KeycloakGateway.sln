@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeycloakGateway", "KeycloakGateway\KeycloakGateway.csproj", "{D5056705-5ABA-447B-8B69-03581622ABB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeycloakGateway.Application", "KeycloakGateway.Application\KeycloakGateway.Application.csproj", "{1D50FF0F-8ECD-4C13-B7AC-37C43832599A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeycloakGateway.Infrastructure", "KeycloakGateway.Infrastructure\KeycloakGateway.Infrastructure.csproj", "{633157FB-E076-4A66-9D6C-C868F725C417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeycloakGateway.Domain", "KeycloakGateway.Domain\KeycloakGateway.Domain.csproj", "{0080AFE3-7D85-48F0-89F0-388CD7F5BDD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeycloakGateway.EmailWorker", "KeycloakGateway.EmailWorker\KeycloakGateway.EmailWorker.csproj", "{586DEAB6-00FC-B360-1583-4E748D1CE840}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5056705-5ABA-447B-8B69-03581622ABB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5056705-5ABA-447B-8B69-03581622ABB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5056705-5ABA-447B-8B69-03581622ABB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5056705-5ABA-447B-8B69-03581622ABB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D50FF0F-8ECD-4C13-B7AC-37C43832599A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D50FF0F-8ECD-4C13-B7AC-37C43832599A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D50FF0F-8ECD-4C13-B7AC-37C43832599A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D50FF0F-8ECD-4C13-B7AC-37C43832599A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{633157FB-E076-4A66-9D6C-C868F725C417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{633157FB-E076-4A66-9D6C-C868F725C417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{633157FB-E076-4A66-9D6C-C868F725C417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{633157FB-E076-4A66-9D6C-C868F725C417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0080AFE3-7D85-48F0-89F0-388CD7F5BDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0080AFE3-7D85-48F0-89F0-388CD7F5BDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0080AFE3-7D85-48F0-89F0-388CD7F5BDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0080AFE3-7D85-48F0-89F0-388CD7F5BDD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{586DEAB6-00FC-B360-1583-4E748D1CE840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{586DEAB6-00FC-B360-1583-4E748D1CE840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{586DEAB6-00FC-B360-1583-4E748D1CE840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{586DEAB6-00FC-B360-1583-4E748D1CE840}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA56D31F-9592-415E-8AC5-C6B005B6340F}
+	EndGlobalSection
+EndGlobal
