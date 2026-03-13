@@ -7,7 +7,19 @@ services:
        dockerfile: KeycloakGateway/Dockerfile
     container_name: gateway
     ports:
-      - "5001:80"
+      - "5001:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Kafka__BootstrapServers: 172.16.1.11:9092
+      Kafka__Topic: email-topic
+    networks:
+      - gateway-net
+
+  emailworker:
+    build:
+       context: .
+       dockerfile: KeycloakGateway.EmailWorker/Dockerfile
+    container_name: emailworker
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       Kafka__BootstrapServers: 172.16.1.11:9092
