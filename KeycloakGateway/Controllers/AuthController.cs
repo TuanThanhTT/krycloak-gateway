@@ -3,6 +3,7 @@ using KeycloakGateway.Application.DTOs.Users;
 using KeycloakGateway.Application.Interfaces;
 using KeycloakGateway.Infrastructure.Redis;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
@@ -176,14 +177,32 @@ namespace KeycloakGateway.Controllers
             string code_challenge,
             string code_challenge_method)
         {
-            var redirect_uri = await _clientService.GetRedirectUriAsync(client_id);
-            var loginUrl =
-                _config.SSO_loginUrl +
-                $"?client_id={client_id}" +
-                $"&redirect_uri={redirect_uri}" +
-                $"&state={state}" +
-                $"&code_challenge={code_challenge}" +
-                $"&code_challenge_method={code_challenge_method}";
+            //var redirect_uri = await _clientService.GetRedirectUriAsync(client_id);
+            //var loginUrl =
+            //    _config.SSO_loginUrl +
+            //    $"?client_id={client_id}" +
+            //    $"&redirect_uri={redirect_uri}" +
+            //    $"&state={state}" +
+            //    $"&code_challenge={code_challenge}" +
+            //    $"&code_challenge_method={code_challenge_method}";
+
+            var redirectUri = await _clientService.GetRedirectUriAsync(client_id);
+
+            if (string.IsNullOrEmpty(redirectUri))
+                return BadRequest("invalid_client");
+
+            var query = new Dictionary<string, string?>
+            {
+                ["client_id"] = client_id,
+                ["redirect_uri"] = redirectUri,
+                ["state"] = state,
+                ["code_challenge"] = code_challenge,
+                ["code_challenge_method"] = code_challenge_method
+            };
+
+            var loginUrl = QueryHelpers.AddQueryString(
+                _config.SSO_loginUrl,
+                query);
 
             return Redirect(loginUrl);
         }
