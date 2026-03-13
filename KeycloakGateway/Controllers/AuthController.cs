@@ -203,6 +203,7 @@ namespace KeycloakGateway.Controllers
             var loginUrl = QueryHelpers.AddQueryString(
                 _config.SSO_loginUrl,
                 query);
+            Console.WriteLine("Redirecting to: " + loginUrl);   
 
             return Redirect(loginUrl);
         }
