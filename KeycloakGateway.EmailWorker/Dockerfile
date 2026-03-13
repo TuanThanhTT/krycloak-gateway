@@ -1,9 +1,13 @@
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY KeycloakGateway.EmailWorker/ ./
-RUN dotnet restore KeycloakGateway.EmailWorker.csproj
-RUN dotnet publish KeycloakGateway.EmailWorker.csproj -c Release -o /app/publish
+COPY KeycloakGateway.EmailWorker/ ./KeycloakGateway.EmailWorker/
+COPY KeycloakGateway.Application/ ./KeycloakGateway.Application/
+COPY KeycloakGateway.Domain/ ./KeycloakGateway.Domain/
+COPY KeycloakGateway.Infrastructure/ ./KeycloakGateway.Infrastructure/
+COPY KeycloakGateway.sln ./
+RUN dotnet restore KeycloakGateway.EmailWorker/KeycloakGateway.EmailWorker.csproj
+RUN dotnet publish KeycloakGateway.EmailWorker/KeycloakGateway.EmailWorker.csproj -c Release -o /app/publish
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
