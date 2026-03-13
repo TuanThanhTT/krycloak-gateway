@@ -186,11 +186,20 @@ namespace KeycloakGateway.Controllers
             //    $"&code_challenge={code_challenge}" +
             //    $"&code_challenge_method={code_challenge_method}";
 
+            // 1. Validate client
             var redirectUri = await _clientService.GetRedirectUriAsync(client_id);
 
-            if (string.IsNullOrEmpty(redirectUri))
+            if (string.IsNullOrWhiteSpace(redirectUri))
                 return BadRequest("invalid_client");
 
+            // 2. Validate PKCE
+            if (code_challenge_method != "S256")
+                return BadRequest("invalid_code_challenge_method");
+
+            if (string.IsNullOrWhiteSpace(code_challenge))
+                return BadRequest("invalid_code_challenge");
+
+            // 3. Build query
             var query = new Dictionary<string, string?>
             {
                 ["client_id"] = client_id,
@@ -200,10 +209,12 @@ namespace KeycloakGateway.Controllers
                 ["code_challenge_method"] = code_challenge_method
             };
 
+            // 4. Build login url (tự encode)
             var loginUrl = QueryHelpers.AddQueryString(
                 _config.SSO_loginUrl,
                 query);
-            Console.WriteLine("Redirecting to: " + loginUrl);   
+
+
 
             return Redirect(loginUrl);
         }
