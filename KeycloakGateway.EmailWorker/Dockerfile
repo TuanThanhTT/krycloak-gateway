@@ -1,7 +1,7 @@
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY . .
+COPY KeycloakGateway.EmailWorker/ ./
 RUN dotnet restore KeycloakGateway.EmailWorker.csproj
 RUN dotnet publish KeycloakGateway.EmailWorker.csproj -c Release -o /app/publish
 
