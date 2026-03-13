@@ -408,7 +408,8 @@
                 });
                 const data = await res.json();
                 if (data.isAdmin) {
-                    document.cookie = `swagger_token=${data.accessToken}; path=/; samesite=strict; secure`;
+                    //document.cookie = `swagger_token=${data.accessToken}; path=/; samesite=strict; secure`;
+                    document.cookie = `swagger_token=${data.accessToken}; path=/; samesite=lax`;
                     window.location = "/swagger";
                 } else {
                     errorEl.textContent = data.message || "Tài khoản không có quyền truy cập.";
