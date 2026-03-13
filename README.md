@@ -323,5 +323,5 @@ Ví dụ trong `appsettings.json`:
 ✅ Microservice friendly
 ✅ Dễ mở rộng
 ✅ Phù hợp khóa luận
-
+docker compose -f docker-gateway-compose.yml up --build
 ---

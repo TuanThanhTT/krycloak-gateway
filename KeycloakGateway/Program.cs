@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFE", policy =>
     {
         policy
-            .WithOrigins("http://localhost:9000", "http://localhost:5000", "http://localhost:5174", "http://localhost:3000")
+            .WithOrigins("http://localhost:9000", "http://localhost:5000", "http://localhost:5174", "http://172.16.1.11:3000")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
