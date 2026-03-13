@@ -9,6 +9,7 @@ namespace KeycloakGateway.Application.DTOs.Auth
     public class KeycloakOptions
     {
         public string BaseUrl { get; set; }
+        public string SSO_loginUrl { get; set; }    
         public string Realm { get; set; }
 
         public string AuthEndpoint { get; set; }

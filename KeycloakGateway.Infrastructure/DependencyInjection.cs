@@ -37,6 +37,7 @@ namespace KeycloakGateway.Infrastructure
             services.AddSingleton<IEmailProducer, KafkaEmailProducer>();
             services.AddScoped<IEmailTemplateService, EmailTemplateService>();
             services.AddScoped<AuthorizationCodeService>();
+            services.AddScoped<IClientService, ClientService>();
 
             return services;
         }

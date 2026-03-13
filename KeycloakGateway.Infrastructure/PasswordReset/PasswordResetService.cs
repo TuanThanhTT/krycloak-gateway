@@ -75,6 +75,7 @@ namespace KeycloakGateway.Infrastructure.PasswordReset
                             { "link", link }
                         }
                     );
+
             await _emailProducer.PublishAsync(new EmailMessage
             {
                 To = user.Email,

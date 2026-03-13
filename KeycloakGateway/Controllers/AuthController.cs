@@ -4,13 +4,11 @@ using KeycloakGateway.Application.Interfaces;
 using KeycloakGateway.Infrastructure.Redis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 
 namespace KeycloakGateway.Controllers
@@ -26,7 +24,8 @@ namespace KeycloakGateway.Controllers
         private readonly KeycloakOptions _config;
         private readonly KeycloakClients _clients;
         private readonly AuthorizationCodeService _authCodeService;
-        public AuthController(IKeycloakAuthService authService, IUserService userService, IHttpClientFactory httpClientFactory, IOptions<KeycloakOptions> options, IOptions<KeycloakClients> clients, AuthorizationCodeService authCodeService)
+        private readonly IClientService _clientService;
+        public AuthController(IKeycloakAuthService authService, IUserService userService, IHttpClientFactory httpClientFactory, IOptions<KeycloakOptions> options, IOptions<KeycloakClients> clients, AuthorizationCodeService authCodeService, IClientService clientService)
         {
             _authService = authService;
             _userService = userService;
@@ -34,6 +33,7 @@ namespace KeycloakGateway.Controllers
             _config = options.Value;
             _clients = clients.Value;
             _authCodeService = authCodeService;
+            _clientService = clientService;
         }
 
         /// <summary>
@@ -170,15 +170,15 @@ namespace KeycloakGateway.Controllers
         //}
 
         [HttpGet("/oauth2/authorize")]
-        public IActionResult Authorize(
+        public async Task<IActionResult> Authorize(
             string client_id,
-            string redirect_uri,
             string state,
             string code_challenge,
             string code_challenge_method)
         {
+            var redirect_uri = await _clientService.GetRedirectUriAsync(client_id);
             var loginUrl =
-                $"http://localhost:3000/login" +
+                _config.SSO_loginUrl +
                 $"?client_id={client_id}" +
                 $"&redirect_uri={redirect_uri}" +
                 $"&state={state}" +
